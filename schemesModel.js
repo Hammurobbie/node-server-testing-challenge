@@ -25,7 +25,7 @@ function findById(id) {
 function update(changes, id) {
   return db("schemes")
     .where({ id })
-    .insert(changes);
+    .update(changes);
 }
 
 function remove(id) {
