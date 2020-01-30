@@ -13,7 +13,7 @@ server.use(cors());
 server.post("/schemes", (req, res) => {
   schemesModel
     .add(req.body)
-    .then(schm => {
+    .then(() => {
       res.status(200).json({ message: "The scheme was successfully created" });
     })
     .catch(() => {
