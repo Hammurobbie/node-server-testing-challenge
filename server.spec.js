@@ -23,6 +23,8 @@ describe("server.js", () => {
       expect(response.type).toEqual("application/json");
     });
 
+    //delete tests
+
     describe("delete requests", () => {
       it("should return a OK status upon succesful delete request", async () => {
         const response = await request(server).delete("/schemes/2");
@@ -41,6 +43,8 @@ describe("server.js", () => {
           });
       });
     });
+
+    //post tests
 
     describe("post requests", () => {
       it("should return a 404 status after posting without body", async () => {
