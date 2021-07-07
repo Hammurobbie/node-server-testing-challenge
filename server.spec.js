@@ -4,24 +4,28 @@ const server = require("./server");
 
 describe("server.js", () => {
   describe("schemes route", () => {
-    it("should return an OK status code from the schemes route", () => {
-      const expectedStatusCode = 200;
+    describe("get requests", () => {
+      it("should return an OK status code from the schemes route", () => {
+        const expectedStatusCode = 200;
 
-      let response;
-      return request(server)
-        .get("/schemes")
-        .then(res => {
-          response = res;
+        let response;
+        return request(server)
+          .get("/schemes")
+          .then(res => {
+            response = res;
 
-          expect(response.status).toEqual(expectedStatusCode);
-        });
+            expect(response.status).toEqual(expectedStatusCode);
+          });
+      });
+
+      it("should return a JSON object from the schemes route", async () => {
+        const response = await request(server).get("/schemes");
+
+        expect(response.type).toEqual("application/json");
+      });
     });
 
-    it("should return a JSON object from the schemes route", async () => {
-      const response = await request(server).get("/schemes");
-
-      expect(response.type).toEqual("application/json");
-    });
+    //delete tests
 
     describe("delete requests", () => {
       it("should return a OK status upon succesful delete request", async () => {
@@ -42,6 +46,8 @@ describe("server.js", () => {
       });
     });
 
+    //post tests
+
     describe("post requests", () => {
       it("should return a 404 status after posting without body", async () => {
         const response = await request(server).post("/schemes/");
@@ -50,6 +56,17 @@ describe("server.js", () => {
       });
 
       it("should return an json message after post", () => {
+        let response;
+        return request(server)
+          .post("/schemes")
+          .then(res => {
+            response = res;
+
+            expect(response.type).toEqual("application/json");
+          });
+      });
+
+      it("should ", () => {
         let response;
         return request(server)
           .post("/schemes")
